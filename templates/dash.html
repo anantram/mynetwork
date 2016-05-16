@@ -1,0 +1,144 @@
+<html>
+
+<head>
+
+<title>Dash board</title>
+	<style>
+	body{
+		background-color: #FFA07A;
+		
+	}
+
+	.button {
+	    background-color: #4CAF50; 
+	    border: none;
+	    color: white;
+	    padding: 15px 32px;
+	    text-align: center;
+	    text-decoration: none;
+	    display: inline-block;
+	    font-size: 14px;
+	    border-radius: 8px;
+	    font-size: 14px;
+   }
+
+
+   h1 {
+	margin: 1em 0 0.5em 0;
+	font-weight: 600;
+	font-family: 'Titillium Web', sans-serif;
+	position: relative;  
+	font-size: 34px;
+	line-height: 40px;
+	padding: 15px 15px 15px 15%;
+	color: #355681;
+	text-align: center;
+	box-shadow: 
+		inset 0 0 0 1px rgba(53,86,129, 0.4), 
+		inset 0 0 5px rgba(53,86,129, 0.5),
+		inset -285px 0 35px white;
+	border-radius: 0 10px 0 10px;
+	background-color: #F0F8FF;
+	}
+
+
+	input[type=text] {
+    width: 20%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 1px solid #555;
+    outline: none;
+	}
+
+	input#round{
+	width:70px; 
+	height:70px; 
+	background-color:blue;
+	border:0.7px solid blue; 
+	color:#fff;
+	font-size:1em;
+	-webkit-border-radius: 50px;
+	-moz-border-radius: 50px;
+	border-radius: 90px;
+	-webkit-box-shadow: 0 0 10px rgba(0,0,0, .75);
+	-moz-box-shadow: 0 0 10px rgba(0,0,0, .75);
+	box-shadow: 2px 2px 15px rgba(0,0,0, .75);
+	}
+
+	input[type=text]:focus {
+	    background-color: lightblue;
+	}
+	
+	* {
+		font-family: Verdana;
+	}
+
+
+</style>
+<link rel="shortcut icon" href="assets/ico/social-network-icon.png">
+</head>
+
+<body>
+
+	<h1> My Network </h1>
+	<h2> Welcome <i>{{username}}</i> !!</h2>
+	<h3><b><a href = "/logout" style="float:right"> Log out </a></b></h3>
+	
+	<form action = "" method = "post">
+		<b><i>Enter new Post:</i></b>&nbsp;&nbsp;
+		<input type = "text" name = "new_post"></input>&nbsp;&nbsp;&nbsp;
+		<input id="round" type = "submit" value="Submit"> </input>
+	</form>
+	<h3> My posts </h3>
+
+	<ul>
+		{% for post in posts %}
+			<li>{{post.user_post}}
+				<form action = "/post">
+				<br>
+					<button type = "submit" class= "button" value = "{{post.user_post}}" name = "post" > Comment </button>
+				</form>
+			</li>
+		{% endfor %}
+	</ul>
+	<h3> Friend Requests </h3>
+	<ul>
+		{% for request in requests %}
+			<li>
+				{{request.user_name}}
+				<form action = "/addfriend">
+					<input type = "hidden" name = "friendname" value = "{{request.request_name}}">
+					<button type = "submit" class= "button" value = "{{request.user_name}}" name = "friendID" > Accept </button>
+				</form>
+			</li>
+		{% endfor %}
+	</ul>
+
+<!-- Friends list -->
+<h3> Friends </h3>
+<ul>
+	{% for friend in user_friends %}
+		<li>
+			<form action = "/profile">
+				<input type = "hidden" name = "username" value = "{{friend.friend_name}}">
+				<button type = "submit" class= "button" value = "{{friend.user_friend}}" name = "userID" > {{friend.friend_name}}</button>
+			</form>
+		</li>
+	{% endfor %}
+</ul>
+
+<!-- All users list -->
+<h3> Users </h3>
+<ul>
+	{% for user in users %}
+		<li>
+			<form action = "/profile">
+				<input type = "hidden" name = "username" value = "{{user.f_name}}">
+				<button type = "submit" class= "button" value = "{{user.user_name}}" name = "userID" > {{user.f_name}} </button>
+			</form>
+		</li>
+	{% endfor %}
+</ul>
+</body>
+</html>

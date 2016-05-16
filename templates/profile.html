@@ -1,0 +1,86 @@
+<html>
+
+<head>
+
+<title>{{username}}</title>
+    <style>
+    body{
+        background-color: #FFA07A;
+        
+    }
+
+    .button {
+	    background-color: #4CAF50; 
+	    border: none;
+	    color: white;
+	    padding: 15px 32px;
+	    text-align: center;
+	    text-decoration: none;
+	    display: inline-block;
+	    font-size: 14px;
+	    border-radius: 8px;
+	    font-size: 14px;
+   }
+   h1 {
+	margin: 1em 0 0.5em 0;
+	font-weight: 600;
+	font-family: 'Titillium Web', sans-serif;
+	position: relative;  
+	font-size: 34px;
+	line-height: 40px;
+	padding: 15px 15px 15px 15%;
+	color: #355681;
+	text-align: center;
+	box-shadow: 
+		inset 0 0 0 1px rgba(53,86,129, 0.4), 
+		inset 0 0 5px rgba(53,86,129, 0.5),
+		inset -285px 0 35px white;
+	border-radius: 0 10px 0 10px;
+	background-color: #F0F8FF;
+	}
+
+	* {
+		font-family: Verdana;
+	}
+</style>
+
+<link rel="shortcut icon" href="assets/ico/social-network-icon.png">
+</head>
+
+<body>
+<h1> My Network </h1>
+<h2> <i>Profile Name: </i>{{username}} </h2>
+{% if friend_stat %}
+		<ul>
+		{% for post in posts %}
+			<li>
+				<h3>{{post.user_post}}</h3>
+				<form action = "/post">
+					<button type = "submit" class= "button" value = "{{post.user_post}}" name = "post" > Comment </button>
+				</form>
+			</li>
+		{% endfor %}
+	</ul>
+	<form action = "/unfriend">
+		<input type = "hidden" name = "friendname" value = "{{username}}">
+		<button type = "submit" class= "button" value = "{{userID}}" name = "friendID" > Unfriend </button>
+	</form>
+{% else %}
+	{% if not request_stat %}
+		<b> <h3>Email ID -   {{userID}}</h3> </b>
+		<br>
+		<h2>To view <i><b>{{username}}</b></i> posts send a friend request.</h2>
+		<form action = "/sendrequest">
+			<input type = "hidden" name = "friendname" value = "{{username}}">
+			<button type = "submit" class= "button" value = "{{userID}}" name = "friendID" > Add friend </button>
+		</form>
+	{% else %}
+		<b> <h4>Request already send </h4></b>
+	{% endif %}
+
+{% endif %}
+<br>
+<b><a href = "/dashboard" style="float: left;"> Back </a></b>
+</body>
+
+</html>

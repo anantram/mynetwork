@@ -1,0 +1,105 @@
+<html>
+
+<head>
+
+<title>
+	Post
+</title>
+
+<style>
+
+
+	body{
+			background-color :#FFB6C1;
+	}
+		input#round{
+	width:70px; 
+	height:70px; 
+	background-color:#FA8072;
+	border:1px solid #FDF5E6; 
+	color:#fff;
+	font-size:1.1em;
+	-webkit-border-radius: 50px;
+	-moz-border-radius: 50px;
+	border-radius: 90px;
+	-webkit-box-shadow: 0 0 10px rgba(0,0,0, .75);
+	-moz-box-shadow: 0 0 10px rgba(0,0,0, .75);
+	box-shadow: 2px 2px 15px rgba(0,0,0, .75);
+	}
+	input#round:hover{
+	background:#c20b0b;
+	border:1px solid #c20b0b;
+	-webkit-box-shadow: 0px 0px 5px rgba(0,0,0, .75);
+	-moz-box-shadow: 0px 0px 5px rgba(0,0,0, .75);
+	box-shadow: 0px 0px 5px rgba(0,0,0, .75);
+	}
+
+
+	input[type=text] {
+    width: 20%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 1px solid #555;
+    outline: none;
+	}
+
+	input[type=text]:focus {
+	    background-color: lightblue;
+	}
+	* {
+		font-family: Verdana;
+	}
+
+
+
+	h1 {
+	margin: 1em 0 0.5em 0;
+	font-weight: 600;
+	font-family: 'Titillium Web', sans-serif;
+	position: relative;  
+	font-size: 34px;
+	line-height: 40px;
+	padding: 15px 15px 15px 15%;
+	color: #355681;
+	text-align: center;
+	box-shadow: 
+		inset 0 0 0 1px rgba(53,86,129, 0.4), 
+		inset 0 0 5px rgba(53,86,129, 0.5),
+		inset -285px 0 35px white;
+	border-radius: 0 10px 0 10px;
+	background-color: #F0F8FF;
+	}
+
+</style>
+<link rel="shortcut icon" href="assets/ico/social-network-icon.png">
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/ico/social-network-icon.png">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="assets/ico/social-network-icon.png">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/ico/social-network-icon.png">
+        <link rel="apple-touch-icon-precomposed" href="assets/ico/social-network-icon.png">
+
+  </head>
+
+  <body>
+  <h1> My Network </h1>
+
+
+<b><a href = "/dashboard" style="float:right"> Back </a></b>
+<ul>
+
+	<h2> Comments for Post: {{post}}</h2>
+	{% for comment in comments_list %}
+		<li><b><h3>{{comment.post_comment}}</h3></b>
+			by <i>{{comment.post_user}}</i>
+			<br>
+		</li>
+	{% endfor %}
+</ul>
+
+<form action = "" method = "post">
+	<i>Post your Comment here:</i>&nbsp;&nbsp;&nbsp;&nbsp;<input type = "text" name = "comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<input id="round" type="submit" value="Submit" />
+</form>
+</body>
+
+</html>
